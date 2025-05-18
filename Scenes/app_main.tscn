@@ -1,0 +1,135 @@
+[gd_scene load_steps=7 format=3 uid="uid://ds0jps4mqwatn"]
+
+[ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/bar_top.tscn" id="1_56hru"]
+[ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_al584"]
+[ext_resource type="Script" uid="uid://dgeyldqo75nkn" path="res://Scripts/app_main.gd" id="1_c6q44"]
+[ext_resource type="PackedScene" uid="uid://caong3awgnxiv" path="res://Scenes/item_panel.tscn" id="4_yd3c8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yd3c8"]
+size = Vector2(660, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tonuu"]
+size = Vector2(100, 330)
+
+[node name="AppMain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_al584")
+script = ExtResource("1_c6q44")
+Ball_Speed = 140
+Ball_Speedup = 8
+
+[node name="RigidBodyCeiling" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyCeiling"]
+position = Vector2(320, 20)
+shape = SubResource("RectangleShape2D_yd3c8")
+
+[node name="RigidBodyFloor" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyFloor"]
+position = Vector2(320, 430)
+shape = SubResource("RectangleShape2D_yd3c8")
+
+[node name="BarTop" parent="." instance=ExtResource("1_56hru")]
+layout_mode = 1
+
+[node name="ButtonAddBall" type="Button" parent="BarTop"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 10.0
+offset_right = 460.0
+offset_bottom = 40.0
+text = "+Ball"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 50.0
+offset_right = 310.0
+offset_bottom = 400.0
+color = Color(1, 1, 1, 0.156863)
+
+[node name="Node2DSpawn" type="Node2D" parent="."]
+position = Vector2(300, 220)
+
+[node name="ItemPanelLeft" parent="." instance=ExtResource("4_yd3c8")]
+position = Vector2(10, 180)
+Light_Color = Color(1, 0, 0, 1)
+Speed_In_Pixels = 260
+Key_Filter_Up = "Left Up"
+Key_Filter_Down = "Left Down"
+
+[node name="ItemPanelRight" parent="." instance=ExtResource("4_yd3c8")]
+position = Vector2(610, 180)
+Light_Color = Color(0, 0.166667, 1, 1)
+Speed_In_Pixels = 260
+Key_Filter_Up = "Right Up"
+Key_Filter_Down = "Right Down"
+
+[node name="LabelLeftScore" type="Label" parent="."]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 50.0
+offset_right = 290.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelRightScore" type="Label" parent="."]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 50.0
+offset_right = 360.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0, 0.166667, 1, 1)
+theme_override_font_sizes/font_size = 21
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RigidBodyGoalLeft" type="RigidBody2D" parent="."]
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyGoalLeft"]
+position = Vector2(-50, 225)
+shape = SubResource("RectangleShape2D_tonuu")
+
+[node name="RigidBodyGoalRight" type="RigidBody2D" parent="."]
+freeze = true
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyGoalRight"]
+position = Vector2(690, 225)
+shape = SubResource("RectangleShape2D_tonuu")
+
+[connection signal="body_entered" from="RigidBodyCeiling" to="." method="_on_rigid_body_ceiling_body_entered"]
+[connection signal="body_entered" from="RigidBodyFloor" to="." method="_on_rigid_body_floor_body_entered"]
+[connection signal="pressed" from="BarTop/ButtonAddBall" to="." method="_on_button_add_ball_pressed"]
+[connection signal="kick" from="ItemPanelLeft" to="." method="_on_item_panel_left_kick"]
+[connection signal="kick" from="ItemPanelRight" to="." method="_on_item_panel_right_kick"]
+[connection signal="body_entered" from="RigidBodyGoalLeft" to="." method="_on_rigid_body_goal_left_body_entered"]
+[connection signal="body_entered" from="RigidBodyGoalRight" to="." method="_on_rigid_body_goal_right_body_entered"]

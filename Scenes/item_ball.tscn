@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cg7tjiisjk2ph"]
+
+[ext_resource type="Script" uid="uid://ufpo6qdyr1ac" path="res://Scripts/item_ball.gd" id="1_18n5f"]
+[ext_resource type="Script" uid="uid://dsr7unw4mxnkl" path="res://Scripts/constant_speed.gd" id="2_c7sgb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_18n5f"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o6dic"]
+radius = 14.0
+
+[sub_resource type="Gradient" id="Gradient_18n5f"]
+offsets = PackedFloat32Array(0, 0.99, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c7sgb"]
+gradient = SubResource("Gradient_18n5f")
+width = 28
+height = 28
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="ItemBall" type="Node2D"]
+script = ExtResource("1_18n5f")
+
+[node name="RigidBodyBall" type="RigidBody2D" parent="."]
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_18n5f")
+gravity_scale = 0.0
+max_contacts_reported = 1
+script = ExtResource("2_c7sgb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBodyBall"]
+position = Vector2(14, 14)
+shape = SubResource("CircleShape2D_o6dic")
+
+[node name="Polygon2D" type="Polygon2D" parent="RigidBodyBall"]
+texture = SubResource("GradientTexture2D_c7sgb")
+polygon = PackedVector2Array(0, 0, 30, 0, 30, 30, 0, 30)

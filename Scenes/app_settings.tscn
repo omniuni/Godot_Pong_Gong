@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1npg3y2y1ad6"]
+
+[ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_dxxiu"]
+[ext_resource type="Script" uid="uid://0se5hjv08vev" path="res://Scripts/app_settings.gd" id="1_mmbnq"]
+[ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/bar_top.tscn" id="2_dxxiu"]
+
+[node name="AppSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_dxxiu")
+script = ExtResource("1_mmbnq")
+
+[node name="BarTop" parent="." instance=ExtResource("2_dxxiu")]
+layout_mode = 1

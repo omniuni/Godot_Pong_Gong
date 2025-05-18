@@ -1,0 +1,55 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://da2ym3jqvm0nv"]
+
+[ext_resource type="FontFile" uid="uid://d1lcbkim5nhp7" path="res://Gfx/prstartk.ttf" id="1_mxcpj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6aj48"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.2, 0.2, 0.2, 0.313726)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxcpj"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbiok"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c8ict"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.6, 0.6, 0.6, 0.313726)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcucd"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0, 0, 0, 0.313726)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blpbx"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+
+[resource]
+resource_name = "GFlat"
+default_font = ExtResource("1_mxcpj")
+Button/styles/disabled = SubResource("StyleBoxFlat_6aj48")
+Button/styles/focus = SubResource("StyleBoxFlat_mxcpj")
+Button/styles/hover = SubResource("StyleBoxFlat_jbiok")
+Button/styles/normal = SubResource("StyleBoxFlat_c8ict")
+Button/styles/pressed = SubResource("StyleBoxFlat_jcucd")
+MarginContainer/constants/margin_bottom = 0
+MarginContainer/constants/margin_left = 0
+MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_top = 0
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_blpbx")
