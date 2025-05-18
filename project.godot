@@ -20,6 +20,7 @@ config/icon="uid://63fgwhx35ciu"
 
 Scenes="*res://Scenes/scenes.gd"
 Beeper="*res://Scenes/beeper.tscn"
+GameSettings="*res://Scripts/game_settings.gd"
 
 [display]
 

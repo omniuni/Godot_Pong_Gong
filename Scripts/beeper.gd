@@ -1,6 +1,10 @@
 extends Node
 
+var sound_enabled = true
+
 func play(time: float = 0.1, pitch: float = 1.0):
+	if not sound_enabled:
+		return
 	if $beep.playing:
 		$beep.stop()
 	if time > 1.0:

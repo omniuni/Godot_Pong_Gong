@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dft73fna67f8x"]
+
+[ext_resource type="Script" uid="uid://bdjuyi4wjx3s8" path="res://Scripts/item_color_list.gd" id="1_oarr8"]
+
+[node name="ItemColorList" type="HBoxContainer"]
+theme_override_constants/separation = 0
+script = ExtResource("1_oarr8")

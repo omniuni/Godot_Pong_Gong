@@ -16,6 +16,11 @@ func _ready() -> void:
 	$RigidBodyPanel/Polygon2DLightTop.color = Light_Color
 	$RigidBodyPanel/Polygon2DLightBottom.color = Light_Color
 	pass
+	
+func set_light_color(color: Color):
+	Light_Color = color
+	_ready()
+	pass
 
 func _physics_process(delta: float) -> void:
 	var linear_velocity_y = computed_vertical_velocity*Speed_In_Pixels

@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1npg3y2y1ad6"]
+[gd_scene load_steps=6 format=3 uid="uid://c1npg3y2y1ad6"]
 
 [ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_dxxiu"]
 [ext_resource type="Script" uid="uid://0se5hjv08vev" path="res://Scripts/app_settings.gd" id="1_mmbnq"]
 [ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/bar_top.tscn" id="2_dxxiu"]
+[ext_resource type="PackedScene" uid="uid://bylp853n15o5o" path="res://Scenes/item_color_square.tscn" id="4_dkwp2"]
+[ext_resource type="PackedScene" uid="uid://dft73fna67f8x" path="res://Scenes/item_color_list.tscn" id="5_p6ux1"]
 
 [node name="AppSettings" type="Control"]
 layout_mode = 3
@@ -17,3 +19,76 @@ script = ExtResource("1_mmbnq")
 
 [node name="BarTop" parent="." instance=ExtResource("2_dxxiu")]
 layout_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 100.0
+offset_bottom = 148.0
+grow_horizontal = 2
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 40
+columns = 2
+
+[node name="AudioLabel" type="Label" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Audio"
+horizontal_alignment = 2
+
+[node name="AudioCheck" type="CheckButton" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Enabled"
+
+[node name="GameLengthLabel" type="Label" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Game Length (Rounds)"
+horizontal_alignment = 2
+
+[node name="OptionGameRounds" type="OptionButton" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "3"
+popup/item_0/id = 0
+popup/item_1/text = "5"
+popup/item_1/id = 1
+popup/item_2/text = "11"
+popup/item_2/id = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+
+[node name="LabelColorP1" type="Label" parent="CenterContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+text = "Player 1 Color"
+
+[node name="ColorSquareP1" parent="CenterContainer/GridContainer/HBoxContainer" instance=ExtResource("4_dkwp2")]
+layout_mode = 2
+
+[node name="ItemColorListP1" parent="CenterContainer/GridContainer" instance=ExtResource("5_p6ux1")]
+layout_mode = 2
+Swatch_Colors = Array[Color]([Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 1, 1, 1), Color(0, 0, 1, 1)])
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+
+[node name="LabelColorP2" type="Label" parent="CenterContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Player 2 Color"
+
+[node name="ColorSquareP2" parent="CenterContainer/GridContainer/HBoxContainer2" instance=ExtResource("4_dkwp2")]
+layout_mode = 2
+
+[node name="ItemColorListP2" parent="CenterContainer/GridContainer" instance=ExtResource("5_p6ux1")]
+layout_mode = 2
+Swatch_Colors = Array[Color]([Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 1, 1, 1), Color(0, 0, 1, 1)])
+
+[connection signal="toggled" from="CenterContainer/GridContainer/AudioCheck" to="." method="_on_audio_check_toggled"]
+[connection signal="item_selected" from="CenterContainer/GridContainer/OptionGameRounds" to="." method="_on_option_game_rounds_item_selected"]
+[connection signal="on_color_selected" from="CenterContainer/GridContainer/ItemColorListP1" to="." method="_on_item_color_list_p_1_on_color_selected"]
+[connection signal="on_color_selected" from="CenterContainer/GridContainer/ItemColorListP2" to="." method="_on_item_color_list_p_2_on_color_selected"]

@@ -11,12 +11,13 @@ var score_right: int = 0
 
 func _ready():
 	$BarTop.update_title("Godot Pong")
+	$ItemPanelLeft.set_light_color(GameSettings.color_p1)
+	$LabelLeftScore.add_theme_color_override("font_color", GameSettings.color_p1)
+	$ItemPanelRight.set_light_color(GameSettings.color_p2)
+	$LabelRightScore.add_theme_color_override("font_color", GameSettings.color_p2)
+	update_rounds()
 	pass
 
-func _on_button_add_ball_pressed() -> void:
-	add_ball()
-	pass
-	
 func add_ball():
 	if current_ball == null:
 		current_ball = Ball_Scene.instantiate()
@@ -30,6 +31,28 @@ func add_ball():
 func update_scores():
 	$LabelLeftScore.text = str(score_left)
 	$LabelRightScore.text = str(score_right)
+	update_rounds()
+	pass
+	
+func update_rounds() -> void:
+	var round = score_left+score_right
+	$LabelRounds.text = "Round "+str(round)+" of "+str(GameSettings.rounds)
+	if round == GameSettings.rounds:
+		show_win()
+	pass
+
+func show_win() -> void:
+	var text = " Player Wins"
+	if score_left > score_right:
+		text = "Left"+text
+	else:
+		text = "Right"+text
+	$WinPanel/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LabelWinner.text = text
+	$WinPanel.visible = true
+	pass
+
+func _on_button_add_ball_pressed() -> void:
+	add_ball()
 	pass
 
 func _on_item_panel_left_kick(direction: Vector2) -> void:
@@ -72,4 +95,8 @@ func _on_rigid_body_floor_body_entered(body: Node) -> void:
 		Beeper.play_wall()
 	elif body.get_parent().name.contains("Panel"):
 		Beeper.play_panel()
+	pass
+
+func _on_button_done_pressed() -> void:
+	Scenes.change_to(get_tree(), Scenes.menu)
 	pass
