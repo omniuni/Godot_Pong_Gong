@@ -62,6 +62,7 @@ func show_win() -> void:
 	pass
 
 func _on_button_add_ball_pressed() -> void:
+	Beeper.play_ui()
 	if current_ball == null and add_ball_in == 0:
 		add_ball_in = 4
 	$BarTop/ButtonAddBall.visible = false
