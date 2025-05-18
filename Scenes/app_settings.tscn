@@ -62,12 +62,12 @@ popup/item_2/id = 2
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="LabelColorP1" type="Label" parent="CenterContainer/GridContainer/HBoxContainer"]
-layout_mode = 2
-text = "Player 1 Color"
-
 [node name="ColorSquareP1" parent="CenterContainer/GridContainer/HBoxContainer" instance=ExtResource("4_dkwp2")]
 layout_mode = 2
+
+[node name="LabelColorP1" type="Label" parent="CenterContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+text = "Left Player Color"
 
 [node name="ItemColorListP1" parent="CenterContainer/GridContainer" instance=ExtResource("5_p6ux1")]
 layout_mode = 2
@@ -77,12 +77,12 @@ Swatch_Colors = Array[Color]([Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="LabelColorP2" type="Label" parent="CenterContainer/GridContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Player 2 Color"
-
 [node name="ColorSquareP2" parent="CenterContainer/GridContainer/HBoxContainer2" instance=ExtResource("4_dkwp2")]
 layout_mode = 2
+
+[node name="LabelColorP2" type="Label" parent="CenterContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Right Player Color"
 
 [node name="ItemColorListP2" parent="CenterContainer/GridContainer" instance=ExtResource("5_p6ux1")]
 layout_mode = 2

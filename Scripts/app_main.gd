@@ -9,6 +9,8 @@ var current_ball: Node2D = null
 var score_left: int = 0
 var score_right: int = 0
 
+var add_ball_in: int = 0
+
 func _ready():
 	$BarTop.update_title("Godot Pong")
 	$ItemPanelLeft.set_light_color(GameSettings.color_p1)
@@ -16,6 +18,12 @@ func _ready():
 	$ItemPanelRight.set_light_color(GameSettings.color_p2)
 	$LabelRightScore.add_theme_color_override("font_color", GameSettings.color_p2)
 	update_rounds()
+	pass
+	
+func update_add(visble: bool):
+	$CountPanel.visible = visble
+	var secs_left = add_ball_in
+	$CountPanel/Label.text = str(secs_left)
 	pass
 
 func add_ball():
@@ -32,6 +40,7 @@ func update_scores():
 	$LabelLeftScore.text = str(score_left)
 	$LabelRightScore.text = str(score_right)
 	update_rounds()
+	$BarTop/ButtonAddBall.visible = true
 	pass
 	
 func update_rounds() -> void:
@@ -53,7 +62,9 @@ func show_win() -> void:
 	pass
 
 func _on_button_add_ball_pressed() -> void:
-	add_ball()
+	if current_ball == null and add_ball_in == 0:
+		add_ball_in = 4
+	$BarTop/ButtonAddBall.visible = false
 	pass
 
 func _on_item_panel_left_kick(direction: Vector2) -> void:
@@ -100,4 +111,13 @@ func _on_rigid_body_floor_body_entered(body: Node) -> void:
 
 func _on_button_done_pressed() -> void:
 	Scenes.change_to(get_tree(), Scenes.menu)
+	pass
+
+func _on_timer_timeout() -> void:
+	if add_ball_in != 0:
+		add_ball_in = add_ball_in-1
+		update_add(true)
+		if add_ball_in <= 0:
+			update_add(false)
+			add_ball()
 	pass
