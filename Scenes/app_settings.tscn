@@ -38,7 +38,6 @@ columns = 2
 [node name="AudioLabel" type="Label" parent="CenterContainer/GridContainer"]
 layout_mode = 2
 text = "Audio"
-horizontal_alignment = 2
 
 [node name="AudioCheck" type="CheckButton" parent="CenterContainer/GridContainer"]
 layout_mode = 2
@@ -47,7 +46,6 @@ text = "Enabled"
 [node name="GameLengthLabel" type="Label" parent="CenterContainer/GridContainer"]
 layout_mode = 2
 text = "Game Length (Rounds)"
-horizontal_alignment = 2
 
 [node name="OptionGameRounds" type="OptionButton" parent="CenterContainer/GridContainer"]
 layout_mode = 2
@@ -62,6 +60,7 @@ popup/item_2/id = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/GridContainer"]
 layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="LabelColorP1" type="Label" parent="CenterContainer/GridContainer/HBoxContainer"]
 layout_mode = 2
@@ -76,6 +75,7 @@ Swatch_Colors = Array[Color]([Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/GridContainer"]
 layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="LabelColorP2" type="Label" parent="CenterContainer/GridContainer/HBoxContainer2"]
 layout_mode = 2

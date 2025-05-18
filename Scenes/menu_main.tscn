@@ -29,7 +29,7 @@ layout_mode = 2
 
 [node name="LabelName" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 40
 text = "Gong"
 
 [node name="LabelDescription" type="Label" parent="MarginContainer/VBoxContainer"]
@@ -55,6 +55,11 @@ layout_mode = 2
 text = "Settings"
 alignment = 0
 
+[node name="ButtonHelpAbout" type="Button" parent="MarginContainer/VBoxContainer/VBoxOptions"]
+layout_mode = 2
+text = "Help"
+alignment = 0
+
 [node name="ButtonExit" type="Button" parent="MarginContainer/VBoxContainer/VBoxOptions"]
 layout_mode = 2
 text = "Exit
@@ -66,4 +71,5 @@ stream = ExtResource("3_stxgw")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxOptions/ButtonNotes" to="." method="_on_button_notes_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxOptions/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxOptions/ButtonHelpAbout" to="." method="_on_button_help_about_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxOptions/ButtonExit" to="." method="_on_button_exit_pressed"]

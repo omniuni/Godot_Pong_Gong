@@ -36,8 +36,9 @@ func update_scores():
 	
 func update_rounds() -> void:
 	var round = score_left+score_right
+	var max_round = (GameSettings.rounds+1)/2
 	$LabelRounds.text = "Round "+str(round)+" of "+str(GameSettings.rounds)
-	if round == GameSettings.rounds:
+	if score_left == max_round || score_right == max_round:
 		show_win()
 	pass
 

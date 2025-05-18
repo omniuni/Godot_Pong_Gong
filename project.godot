@@ -14,6 +14,7 @@ config/name="Gong"
 config/version="0.1"
 run/main_scene="uid://b3ox6mxkai1n1"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/use_filter=false
 config/icon="uid://63fgwhx35ciu"
 
 [autoload]
@@ -26,12 +27,16 @@ GameSettings="*res://Scripts/game_settings.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=400
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
 enabled=PackedStringArray()
+
+[gui]
+
+fonts/dynamic_fonts/use_oversampling=false
 
 [input]
 
@@ -362,5 +367,7 @@ ui_swap_input_direction={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/anisotropic_filtering_level=0
