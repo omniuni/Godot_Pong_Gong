@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmt4wtrc1jkls"]
+
+[ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_tjyla"]
+[ext_resource type="Script" uid="uid://d086ll2bibldt" path="res://Scripts/ui_bar_top.gd" id="2_0cp6x"]
+
+[node name="BarTop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_tjyla")
+script = ExtResource("2_0cp6x")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("1_tjyla")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="ButtonSecondary" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="ButtonTertiary" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="ButtonDone" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Main Menu"
+
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "Title Bar"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/ButtonSecondary" to="." method="_on_button_secondary_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/ButtonTertiary" to="." method="_on_button_tertiary_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/ButtonDone" to="." method="_on_button_done_pressed"]

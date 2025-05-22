@@ -10,7 +10,6 @@ func set_speed(speed):
 	
 func get_speed():
 	return magnitude
-	pass
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	magnitude = sqrt(state.linear_velocity.x**2+state.linear_velocity.y**2)

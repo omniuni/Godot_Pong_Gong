@@ -1,6 +1,11 @@
 extends Node
 
-var rounds: int = 3
+## Autoload Singleton, represents game settings.
+## Autoloads MUST extend Node.
 
-var color_p1: Color = Color(0,0,0)
-var color_p2: Color = Color(1,1,1)
+var Audio_Enabled: bool = true
+
+var Rounds: int = 3
+
+var Color_P1: Color = Color(0,0,0)
+var Color_P2: Color = Color(1,1,1)

@@ -19,8 +19,8 @@ config/icon="uid://63fgwhx35ciu"
 
 [autoload]
 
-Scenes="*res://Scenes/scenes.gd"
-Beeper="*res://Scenes/beeper.tscn"
+Scenes="*res://Scripts/scenes.gd"
+Beeper="*res://Scenes/virtual_beeper.tscn"
 GameSettings="*res://Scripts/game_settings.gd"
 
 [display]

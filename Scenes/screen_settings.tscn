@@ -1,12 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://c1npg3y2y1ad6"]
 
 [ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_dxxiu"]
-[ext_resource type="Script" uid="uid://0se5hjv08vev" path="res://Scripts/app_settings.gd" id="1_mmbnq"]
-[ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/bar_top.tscn" id="2_dxxiu"]
+[ext_resource type="Script" uid="uid://0se5hjv08vev" path="res://Scripts/screen_settings.gd" id="1_mmbnq"]
+[ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/ui_bar_top.tscn" id="2_dxxiu"]
 [ext_resource type="PackedScene" uid="uid://bylp853n15o5o" path="res://Scenes/item_color_square.tscn" id="4_dkwp2"]
 [ext_resource type="PackedScene" uid="uid://dft73fna67f8x" path="res://Scenes/item_color_list.tscn" id="5_p6ux1"]
 
-[node name="AppSettings" type="Control"]
+[node name="ControlScreenSettings" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +19,7 @@ script = ExtResource("1_mmbnq")
 
 [node name="BarTop" parent="." instance=ExtResource("2_dxxiu")]
 layout_mode = 1
+Title = "Settings"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -64,6 +65,8 @@ theme_override_constants/separation = 16
 
 [node name="ColorSquareP1" parent="CenterContainer/GridContainer/HBoxContainer" instance=ExtResource("4_dkwp2")]
 layout_mode = 2
+Selectable = null
+Selected = false
 
 [node name="LabelColorP1" type="Label" parent="CenterContainer/GridContainer/HBoxContainer"]
 layout_mode = 2
@@ -71,7 +74,8 @@ text = "Left Player Color"
 
 [node name="ItemColorListP1" parent="CenterContainer/GridContainer" instance=ExtResource("5_p6ux1")]
 layout_mode = 2
-Swatch_Colors = Array[Color]([Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 1, 1, 1), Color(0, 0, 1, 1)])
+Swatch_Colors = Array[Color]([Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 1, 1), Color(0, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 1, 1)])
+Selected_Color = Color(0, 0, 0, 1)
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/GridContainer"]
 layout_mode = 2
@@ -79,6 +83,9 @@ theme_override_constants/separation = 16
 
 [node name="ColorSquareP2" parent="CenterContainer/GridContainer/HBoxContainer2" instance=ExtResource("4_dkwp2")]
 layout_mode = 2
+Selectable = null
+Selected = false
+Swatch_Color = Color(1, 1, 1, 1)
 
 [node name="LabelColorP2" type="Label" parent="CenterContainer/GridContainer/HBoxContainer2"]
 layout_mode = 2
@@ -86,9 +93,10 @@ text = "Right Player Color"
 
 [node name="ItemColorListP2" parent="CenterContainer/GridContainer" instance=ExtResource("5_p6ux1")]
 layout_mode = 2
-Swatch_Colors = Array[Color]([Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 1, 1, 1), Color(0, 0, 1, 1)])
+Swatch_Colors = Array[Color]([Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 1, 1), Color(0, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 1, 1)])
+Selected_Color = Color(1, 1, 1, 1)
 
 [connection signal="toggled" from="CenterContainer/GridContainer/AudioCheck" to="." method="_on_audio_check_toggled"]
 [connection signal="item_selected" from="CenterContainer/GridContainer/OptionGameRounds" to="." method="_on_option_game_rounds_item_selected"]
-[connection signal="on_color_selected" from="CenterContainer/GridContainer/ItemColorListP1" to="." method="_on_item_color_list_p_1_on_color_selected"]
-[connection signal="on_color_selected" from="CenterContainer/GridContainer/ItemColorListP2" to="." method="_on_item_color_list_p_2_on_color_selected"]
+[connection signal="On_Color_Selected" from="CenterContainer/GridContainer/ItemColorListP1" to="." method="_on_item_color_list_p_1_on_color_selected"]
+[connection signal="On_Color_Selected" from="CenterContainer/GridContainer/ItemColorListP2" to="." method="_on_item_color_list_p_2_on_color_selected"]

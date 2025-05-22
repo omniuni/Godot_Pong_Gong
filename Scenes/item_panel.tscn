@@ -22,17 +22,20 @@ max_contacts_reported = 1
 position = Vector2(10, 40)
 shape = SubResource("RectangleShape2D_xh0cu")
 
-[node name="Polygon2DPanel" type="Polygon2D" parent="RigidBodyPanel"]
-polygon = PackedVector2Array(0, 0, 20, 0, 20, 80, 0, 80)
+[node name="RectPanel" type="ColorRect" parent="RigidBodyPanel"]
+offset_right = 20.0
+offset_bottom = 80.0
 
-[node name="Polygon2DLightTop" type="Polygon2D" parent="RigidBodyPanel"]
+[node name="LightTopRect" type="ColorRect" parent="RigidBodyPanel"]
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 20.0
 color = Color(0.5, 0.5, 0.5, 1)
-offset = Vector2(0, 6)
-polygon = PackedVector2Array(0, 0, 20, 0, 20, 6, 0, 6)
 
-[node name="Polygon2DLightBottom" type="Polygon2D" parent="RigidBodyPanel"]
+[node name="LightBottomRect" type="ColorRect" parent="RigidBodyPanel"]
+offset_top = 60.0
+offset_right = 20.0
+offset_bottom = 70.0
 color = Color(0.5, 0.5, 0.5, 1)
-offset = Vector2(0, 68)
-polygon = PackedVector2Array(0, 0, 20, 0, 20, 6, 0, 6)
 
 [connection signal="body_entered" from="RigidBodyPanel" to="." method="_on_rigid_body_panel_body_entered"]

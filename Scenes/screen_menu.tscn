@@ -1,16 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3ox6mxkai1n1"]
 
-[ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_6aj48"]
-[ext_resource type="Script" uid="uid://df8abif88j71o" path="res://Scripts/menu_main.gd" id="1_savw8"]
-[ext_resource type="AudioStream" uid="uid://bd5bl1cu28xw5" path="res://Gfx/sine440_1000ms.ogg" id="3_stxgw"]
+[ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_4ek7c"]
+[ext_resource type="Script" uid="uid://df8abif88j71o" path="res://Scripts/screen_menu.gd" id="2_1byv6"]
+[ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/ui_bar_top.tscn" id="3_abgbc"]
 
-[node name="Control" type="Control"]
+[node name="ControlScreenMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 400.0
-theme = ExtResource("1_6aj48")
-script = ExtResource("1_savw8")
+theme = ExtResource("1_4ek7c")
+script = ExtResource("2_1byv6")
+
+[node name="BarTop" parent="." instance=ExtResource("3_abgbc")]
+layout_mode = 1
+Title = "Main Menu"
+Show_Menu_Button = false
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -20,9 +25,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 80
+theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 80
+theme_override_constants/margin_bottom = 60
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -65,9 +70,6 @@ layout_mode = 2
 text = "Exit
 "
 alignment = 0
-
-[node name="ButtonBeep" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_stxgw")
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxOptions/ButtonNotes" to="." method="_on_button_notes_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxOptions/ButtonSettings" to="." method="_on_button_settings_pressed"]

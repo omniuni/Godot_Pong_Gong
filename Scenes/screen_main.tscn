@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://ds0jps4mqwatn"]
 
-[ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/bar_top.tscn" id="1_56hru"]
+[ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/ui_bar_top.tscn" id="1_56hru"]
 [ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_al584"]
-[ext_resource type="Script" uid="uid://dgeyldqo75nkn" path="res://Scripts/app_main.gd" id="1_c6q44"]
+[ext_resource type="Script" uid="uid://dgeyldqo75nkn" path="res://Scripts/screen_main.gd" id="1_c6q44"]
 [ext_resource type="PackedScene" uid="uid://caong3awgnxiv" path="res://Scenes/item_panel.tscn" id="4_yd3c8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yd3c8"]
@@ -14,7 +14,7 @@ size = Vector2(100, 330)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd3c8"]
 bg_color = Color(0, 0, 0, 0.784314)
 
-[node name="AppMain" type="Control"]
+[node name="ScreenMainControl" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +26,7 @@ theme = ExtResource("1_al584")
 script = ExtResource("1_c6q44")
 Ball_Speed = 140
 Ball_Speedup = 8
+Action_Two_Text = "+Ball"
 
 [node name="RigidBodyCeiling" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
@@ -51,14 +52,8 @@ shape = SubResource("RectangleShape2D_yd3c8")
 
 [node name="BarTop" parent="." instance=ExtResource("1_56hru")]
 layout_mode = 1
-
-[node name="ButtonAddBall" type="Button" parent="BarTop"]
-layout_mode = 0
-offset_left = 360.0
-offset_top = 10.0
-offset_right = 460.0
-offset_bottom = 40.0
-text = "+Ball"
+Title = "Gong"
+Action_Two = "+Ball"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -73,17 +68,17 @@ position = Vector2(320, 220)
 
 [node name="ItemPanelLeft" parent="." instance=ExtResource("4_yd3c8")]
 position = Vector2(10, 180)
-Light_Color = Color(1, 0, 0, 1)
 Speed_In_Pixels = 260
 Key_Filter_Up = "Left Up"
 Key_Filter_Down = "Left Down"
+Light_Color = Color(1, 0, 0, 1)
 
 [node name="ItemPanelRight" parent="." instance=ExtResource("4_yd3c8")]
 position = Vector2(610, 180)
-Light_Color = Color(0, 0.166667, 1, 1)
 Speed_In_Pixels = 260
 Key_Filter_Up = "Right Up"
 Key_Filter_Down = "Right Down"
+Light_Color = Color(0, 0.166667, 1, 1)
 
 [node name="LabelLeftScore" type="Label" parent="."]
 layout_mode = 0
@@ -222,7 +217,7 @@ autostart = true
 
 [connection signal="body_entered" from="RigidBodyCeiling" to="." method="_on_rigid_body_ceiling_body_entered"]
 [connection signal="body_entered" from="RigidBodyFloor" to="." method="_on_rigid_body_floor_body_entered"]
-[connection signal="pressed" from="BarTop/ButtonAddBall" to="." method="_on_button_add_ball_pressed"]
+[connection signal="On_Secondary_Action" from="BarTop" to="." method="_on_bar_top_on_secondary_action"]
 [connection signal="kick" from="ItemPanelLeft" to="." method="_on_item_panel_left_kick"]
 [connection signal="kick" from="ItemPanelRight" to="." method="_on_item_panel_right_kick"]
 [connection signal="body_entered" from="RigidBodyGoalLeft" to="." method="_on_rigid_body_goal_left_body_entered"]

@@ -1,10 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://kpm2opaj3yb8"]
+[gd_scene load_steps=3 format=3 uid="uid://kpm2opaj3yb8"]
 
-[ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_yuded"]
-[ext_resource type="Script" uid="uid://oamepsms77k8" path="res://Scripts/app_help.gd" id="2_khfp1"]
-[ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/bar_top.tscn" id="3_i0fba"]
+[ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_m52df"]
+[ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/ui_bar_top.tscn" id="3_7ml4t"]
 
-[node name="AppSettings" type="Control"]
+[node name="ControlScreenHelp" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,11 +11,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("1_yuded")
-script = ExtResource("2_khfp1")
+theme = ExtResource("1_m52df")
 
-[node name="BarTop" parent="." instance=ExtResource("3_i0fba")]
+[node name="BarTop" parent="." instance=ExtResource("3_7ml4t")]
 layout_mode = 1
+Title = "Help and About"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 custom_minimum_size = Vector2(0, 350)

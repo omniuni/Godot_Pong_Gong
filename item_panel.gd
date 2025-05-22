@@ -1,33 +1,41 @@
+class_name ItemPanel
 extends Node2D
 
-@export var Light_Color = Color(1, 1, 1)
 @export var Speed_In_Pixels = 0
 @export var Key_Filter_Up = ""
 @export var Key_Filter_Down = ""
+
+@export var Light_Color = Color(1, 1, 1):
+	set(value):
+		Light_Color = value
+		_ready()
+		pass
 
 var going_up = false
 var going_down = false
 var computed_vertical_velocity = 0
 var last_known_linear_velovity = 0
 
+@onready
+var light_top_rect: ColorRect = $RigidBodyPanel/LightTopRect
+@onready
+var light_bottom_rect: ColorRect = $RigidBodyPanel/LightBottomRect
+@onready
+var panel_body: RigidBody2D = $RigidBodyPanel
+
 signal kick(direction: Vector2)
 
 func _ready() -> void:
-	$RigidBodyPanel/Polygon2DLightTop.color = Light_Color
-	$RigidBodyPanel/Polygon2DLightBottom.color = Light_Color
-	pass
-	
-func set_light_color(color: Color):
-	Light_Color = color
-	_ready()
+	light_top_rect.color = Light_Color
+	light_bottom_rect.color = Light_Color
 	pass
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var linear_velocity_y = computed_vertical_velocity*Speed_In_Pixels
 	if linear_velocity_y != last_known_linear_velovity:
-		$RigidBodyPanel.linear_velocity.y = linear_velocity_y
+		panel_body.linear_velocity.y = linear_velocity_y
 		last_known_linear_velovity = linear_velocity_y
-	$RigidBodyPanel.linear_velocity.x = 0
+	panel_body.linear_velocity.x = 0
 	pass
 	
 func _input(event: InputEvent) -> void:
@@ -69,8 +77,6 @@ func get_action_name(event: InputEvent):
 		if event.is_action(eventName):
 			return eventName
 	return eventString
-	pass
-	
 
 func _on_rigid_body_panel_body_entered(body: Node) -> void:
 	if body.get_parent().name.contains("Ball"):

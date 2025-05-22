@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfrpg72d7im4j"]
 
-[ext_resource type="Script" uid="uid://bl1wat0ycj36f" path="res://Scripts/beeper.gd" id="1_idpjf"]
+[ext_resource type="Script" uid="uid://bl1wat0ycj36f" path="res://Scripts/virtual_beeper.gd" id="1_idpjf"]
 [ext_resource type="AudioStream" uid="uid://bd5bl1cu28xw5" path="res://Gfx/sine440_1000ms.ogg" id="2_c5d5v"]
 
 [node name="Beeper" type="Node"]

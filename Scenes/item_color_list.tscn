@@ -5,3 +5,4 @@
 [node name="ItemColorList" type="HBoxContainer"]
 theme_override_constants/separation = 0
 script = ExtResource("1_oarr8")
+Selected_Color = null
