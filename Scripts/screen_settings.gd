@@ -68,3 +68,8 @@ func _on_option_game_rounds_item_selected(index: int) -> void:
 	if ui_setup_complete:
 		Beeper.play_ui()
 	pass
+
+func _on_button_kb_configure_pressed() -> void:
+	Beeper.play_ui()
+	Scenes.change_to(get_tree(), Scenes.bindings)
+	pass

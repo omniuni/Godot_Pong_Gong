@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn4l27ughu31f"]
+
+[ext_resource type="Script" uid="uid://c2ptecjbn0atj" path="res://Scripts/screen_bindings.gd" id="1_u01nx"]
+[ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/ui_bar_top.tscn" id="2_a8bjm"]
+
+[node name="ScreenBindings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u01nx")
+
+[node name="BarTop" parent="." instance=ExtResource("2_a8bjm")]
+layout_mode = 1
+Title = "Key Bindings"
+Show_Menu_Button = false
+Action_Two = "Done"
+
+[connection signal="On_Secondary_Action" from="BarTop" to="." method="_on_bar_top_on_secondary_action"]

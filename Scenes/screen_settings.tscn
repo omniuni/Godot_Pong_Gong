@@ -33,7 +33,7 @@ grow_horizontal = 2
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 40
+theme_override_constants/v_separation = 30
 columns = 2
 
 [node name="AudioLabel" type="Label" parent="CenterContainer/GridContainer"]
@@ -96,7 +96,16 @@ layout_mode = 2
 Swatch_Colors = Array[Color]([Color(0, 0, 0, 1), Color(0.5, 0.5, 0.5, 1), Color(1, 1, 1, 1), Color(0, 0, 1, 1), Color(0, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 1, 1)])
 Selected_Color = Color(0.5, 0.5, 0.5, 1)
 
+[node name="Label" type="Label" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Key Bindings"
+
+[node name="ButtonKBConfigure" type="Button" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Configure"
+
 [connection signal="toggled" from="CenterContainer/GridContainer/AudioCheck" to="." method="_on_audio_check_toggled"]
 [connection signal="item_selected" from="CenterContainer/GridContainer/OptionGameRounds" to="." method="_on_option_game_rounds_item_selected"]
 [connection signal="On_Color_Selected" from="CenterContainer/GridContainer/ItemColorListP1" to="." method="_on_item_color_list_p_1_on_color_selected"]
 [connection signal="On_Color_Selected" from="CenterContainer/GridContainer/ItemColorListP2" to="." method="_on_item_color_list_p_2_on_color_selected"]
+[connection signal="pressed" from="CenterContainer/GridContainer/ButtonKBConfigure" to="." method="_on_button_kb_configure_pressed"]
