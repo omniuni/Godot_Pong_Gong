@@ -1,6 +1,11 @@
 class_name SaveableNode
 extends Node
 
+func _ready() -> void:
+	_load()
+	_Enable_Saving = true
+	pass
+
 var _Enable_Saving: bool = false:
 	set(value):
 		if self.name.is_empty():
@@ -13,56 +18,39 @@ var _Enable_Saving: bool = false:
 			print("Saving disabled for `"+self.name+"`")
 		pass
 		
-var supported_types = [
-	Variant.Type.TYPE_BOOL,
-	Variant.Type.TYPE_INT,
-	Variant.Type.TYPE_FLOAT,
-	Variant.Type.TYPE_STRING,
-	Variant.Type.TYPE_COLOR
-]
+var _config = ConfigFile.new()
+	
+func _get_save_directory() -> String:
+	return "saves/0000"
 
-func _init():
-	#check if this has been saved before
-	
-	#if saved, load the save, and set the properties
-	
-	#enable saving
-	_Enable_Saving = true
-	
-	pass
+func _get_save_file_path() -> String:
+	return _get_save_directory()+"/"+self.name+"_save.config"
 	
 func _save() -> void:
 	if not _Enable_Saving: return
-	var saveable_class: String = self.name 
-	print_debug("_save() called from "+saveable_class)
-	
 	var saveable_properties: Array = Array()
 	for property in get_property_list():
 		var propertyName: String = property["name"]
 		if propertyName.begins_with("_"): continue
 		var propertyUsage = property["usage"]
-		var propertyType = property["type"]
-		if propertyUsage == PROPERTY_USAGE_SCRIPT_VARIABLE and supported_types.has(propertyType):
-			var saveable_property: Dictionary = Dictionary()
-			saveable_property.set("name", propertyName)
-			saveable_property.set("type", propertyType)
-			saveable_property.set("value", get(propertyName))
-			saveable_properties.append(saveable_property)
+		if propertyUsage == PROPERTY_USAGE_SCRIPT_VARIABLE:
+			_config.set_value(self.name, propertyName, get(propertyName))
 		pass
-		
-	var saveable_json = JSON.stringify(saveable_properties, "\t")
-	#print("Preparing to save: "+saveable_json)
-	
-	DirAccess.make_dir_recursive_absolute("user://saves/0000")
-	var save_file: FileAccess = FileAccess.open("user://saves/0000/"+saveable_class+".save.json", FileAccess.WRITE)
-	if save_file == null:
-		push_error("Unable to save file: %s" % error_string(FileAccess.get_open_error()))
-		return
-	save_file.store_line(saveable_json)
-	print("Saved "+str(saveable_properties.size())+" values to "+OS.get_user_data_dir()+save_file.get_path().replace("user:/","")+".")
-	
+	DirAccess.make_dir_recursive_absolute("user://"+_get_save_directory())
+	_config.save("user://"+_get_save_file_path())
+	print_debug("Saved config to "+OS.get_user_data_dir()+"/"+_get_save_file_path())
 	pass
 
 func _load() -> void:
-	
+	_config.load("user://"+_get_save_file_path())
+	for property in get_property_list():
+		var propertyName: String = property["name"]
+		if propertyName.begins_with("_"): continue
+		var propertyUsage = property["usage"]
+		if propertyUsage == PROPERTY_USAGE_SCRIPT_VARIABLE:
+			var value = _config.get_value(self.name, propertyName, get(propertyName))
+			if value != null:
+				set(propertyName, value)
+		pass
+	print_debug("Successfully loaded config.")
 	pass

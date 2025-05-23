@@ -22,8 +22,12 @@ func update_audio_toggle():
 func update_player_colors():
 	var colorListP1: UiColorList = $CenterContainer/GridContainer/ItemColorListP1
 	var colorListP2: UiColorList = $CenterContainer/GridContainer/ItemColorListP2
+	var colorSquareP1: UiColorSquare = $CenterContainer/GridContainer/HBoxContainer/ColorSquareP1
+	var colorSquareP2: UiColorSquare = $CenterContainer/GridContainer/HBoxContainer2/ColorSquareP2
 	colorListP1.Selected_Color = GameSettings.Color_P1
 	colorListP2.Selected_Color = GameSettings.Color_P2
+	colorSquareP1.Swatch_Color = GameSettings.Color_P1
+	colorSquareP2.Swatch_Color = GameSettings.Color_P2
 	pass
 	
 func update_rounds():
