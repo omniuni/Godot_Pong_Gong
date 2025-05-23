@@ -1,9 +1,13 @@
-extends Node
+extends SaveableNode
 
 ## Autoload Singleton, represents game settings.
 ## Autoloads MUST extend Node.
 
-var Audio_Enabled: bool = true
+var Audio_Enabled: bool = true:
+	set(value):
+		Audio_Enabled = value
+		_save()
+		pass
 
 var Rounds: int = 3
 

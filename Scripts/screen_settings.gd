@@ -6,10 +6,12 @@ var ui_setup_complete = false
 
 func _ready():
 	ui_setup_complete = false
+	GameSettings._Enable_Saving = false
 	update_audio_toggle()
 	update_player_colors()
 	update_rounds()
 	ui_setup_complete = true
+	GameSettings._Enable_Saving = true
 	pass
 
 func update_audio_toggle():
