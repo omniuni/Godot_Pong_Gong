@@ -23,7 +23,6 @@ grow_horizontal = 2
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme = ExtResource("1_tjyla")
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10

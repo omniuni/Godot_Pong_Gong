@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn4l27ughu31f"]
+[gd_scene load_steps=5 format=3 uid="uid://bn4l27ughu31f"]
 
+[ext_resource type="Theme" uid="uid://da2ym3jqvm0nv" path="res://Themes/gflat.tres" id="1_chwgm"]
 [ext_resource type="Script" uid="uid://c2ptecjbn0atj" path="res://Scripts/screen_bindings.gd" id="1_u01nx"]
 [ext_resource type="PackedScene" uid="uid://bmt4wtrc1jkls" path="res://Scenes/ui_bar_top.tscn" id="2_a8bjm"]
+[ext_resource type="PackedScene" uid="uid://b5gpg507p46dq" path="res://Scenes/ui_rebinder.tscn" id="4_joiu2"]
 
 [node name="ScreenBindings" type="Control"]
 layout_mode = 3
@@ -10,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_chwgm")
 script = ExtResource("1_u01nx")
 
 [node name="BarTop" parent="." instance=ExtResource("2_a8bjm")]
@@ -17,5 +20,75 @@ layout_mode = 1
 Title = "Key Bindings"
 Show_Menu_Button = false
 Action_Two = "Done"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 80.0
+offset_bottom = 358.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(580, 0)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Action"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+disabled = true
+text = "Default"
+
+[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+disabled = true
+text = "Custom"
+
+[node name="UiRebinderLPU" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
+layout_mode = 2
+Action_to_Rebind = "Panel Left Up"
+
+[node name="UiRebinderLPD" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
+layout_mode = 2
+Action_to_Rebind = "Panel Left Down"
+Action_Name = "Left Panel Down"
+
+[node name="UiRebinderRPU" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
+layout_mode = 2
+Action_to_Rebind = "Panel Right Up"
+Action_Name = "Right Panel Up"
+
+[node name="UiRebinderRPD" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
+layout_mode = 2
+Action_to_Rebind = "Panel Right Down"
+Action_Name = "Right Panel Down"
+
+[node name="UiRebinderAB" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
+layout_mode = 2
+Action_to_Rebind = "Add Ball"
 
 [connection signal="On_Secondary_Action" from="BarTop" to="." method="_on_bar_top_on_secondary_action"]
