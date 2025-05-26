@@ -11,6 +11,7 @@ anchor_right = 1.0
 grow_horizontal = 2
 theme = ExtResource("1_u6rj5")
 script = ExtResource("2_m4dyx")
+Input_Read_Time = 6.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -38,11 +39,39 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="ButtonDefault" type="Button" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="ContainerDefault" type="MarginContainer" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="ButtonDefault" type="Button" parent="MarginContainer/HBoxContainer/HBoxContainer/ContainerDefault"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 disabled = true
+text = " "
 
-[node name="ButtonCustom" type="Button" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+[node name="ContainerCustom" type="MarginContainer" parent="MarginContainer/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
+
+[node name="ButtonCustom" type="Button" parent="MarginContainer/HBoxContainer/HBoxContainer/ContainerCustom"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = " "
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/HBoxContainer/ContainerCustom"]
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 6.0
+step = 0.1
+value = 3.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/HBoxContainer/ContainerCustom/ButtonCustom" to="." method="_on_button_custom_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
