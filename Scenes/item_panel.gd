@@ -39,8 +39,8 @@ func _physics_process(_delta: float) -> void:
 	pass
 	
 func _input(event: InputEvent) -> void:
-	var event_name = get_action_name(event)
-	var should_compute = false
+	var event_name: String = GameSettings.get_action_name(event)
+	var should_compute: bool = false
 	if Key_Filter_Down == "" or Key_Filter_Up == "":
 		return
 	if event_name != null:
@@ -70,13 +70,6 @@ func compute_velocity() -> void:
 	if computed_vertical_velocity != 0:
 		kick.emit(Vector2(0,computed_vertical_velocity))
 	pass
-
-func get_action_name(event: InputEvent):
-	var eventString = null
-	for eventName in InputMap.get_actions():
-		if event.is_action(eventName):
-			return eventName
-	return eventString
 
 func _on_rigid_body_panel_body_entered(body: Node) -> void:
 	if body.get_parent().name.contains("Ball"):

@@ -33,6 +33,18 @@ func apply_custom_key_bindings() -> void:
 	InputMap.load_from_project_settings()
 	for action in InputMap.get_actions():
 		if Custom_Key_Bindings.has(action):
-			
+			InputMap.action_erase_events(action)
+			var new_event: InputEventKey = InputEventKey.new()
+			new_event.keycode = Custom_Key_Bindings.get(action)
+			InputMap.action_add_event(action, new_event)
 			pass
 	pass
+
+func get_action_name(event: InputEvent) -> String:
+	var event_string = null
+	for event_name in InputMap.get_actions():
+		if event.is_action(event_name):
+			return event_name
+	if event_string == null:
+		event_string = ""
+	return event_string

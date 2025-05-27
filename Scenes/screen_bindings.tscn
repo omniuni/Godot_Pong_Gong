@@ -71,6 +71,7 @@ text = "Custom"
 [node name="UiRebinderLPU" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
 layout_mode = 2
 Action_to_Rebind = "Panel Left Up"
+Action_Name = "Left Panel Upp"
 
 [node name="UiRebinderLPD" parent="CenterContainer/VBoxContainer" instance=ExtResource("4_joiu2")]
 layout_mode = 2

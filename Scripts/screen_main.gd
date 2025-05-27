@@ -25,8 +25,15 @@ var score_right: int = 0
 var add_ball_in: int = 0
 
 func _ready():
+	GameSettings.apply_custom_key_bindings()
 	init_ui()
 	update_rounds()
+	pass
+	
+func _input(event: InputEvent) -> void:
+	var event_name: String = GameSettings.get_action_name(event)
+	if event_name.to_lower().contains("ball"):
+		_on_bar_top_on_secondary_action()
 	pass
 	
 func init_ui() -> void:
