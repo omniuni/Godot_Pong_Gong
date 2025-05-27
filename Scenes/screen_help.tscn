@@ -29,14 +29,18 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="RichTextLabel" type="Label" parent="CenterContainer"]
-custom_minimum_size = Vector2(460, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 8
 text = "This is a physics-based Pong implementation that can be played on one keyboard.
 
-Players control the left or right panel using QWERTY keys or equivalent:
-Left Panel:		Q/A
-Right Panel:	P/L
+Players control the left or right panel using QWERTY keys or the quivalent keys on the keyboard. The defaults are:
+
+Left Panel:	[Q]/[A]
+Right Panel:	[P]/[L]
+Add Ball: 	[Space]
+
+Players can rebind these keys in Settings if you want.
 
 When the ball is added, the first player to move their panel \"kicks\" it towards their goal aimed either up or down.
 
