@@ -22,3 +22,17 @@ var Color_P2: Color = Color(.5,.5,.5):
 		Color_P2 = value
 		_save()
 		pass
+		
+var Custom_Key_Bindings: Dictionary = {}:
+	set(value):
+		Custom_Key_Bindings = value
+		_save()
+		pass
+		
+func apply_custom_key_bindings() -> void:
+	InputMap.load_from_project_settings()
+	for action in InputMap.get_actions():
+		if Custom_Key_Bindings.has(action):
+			
+			pass
+	pass

@@ -30,22 +30,45 @@ func _ready() -> void:
 	
 	InputMap.load_from_project_settings()
 	
+	if not Action_Name.is_empty():
+		rebinder_label.text = Action_Name
+	
 	for action in InputMap.get_actions():
 		if action == Action_to_Rebind:
 			rebinder_label.text = action
-			var input_events = InputMap.action_get_events(action)
+			var input_events: Array[InputEvent] = InputMap.action_get_events(action)
 			var input_list = ""
-			for input_event in input_events:
+			for input_event: InputEvent in input_events:
 				input_list+=input_event.as_text().replace("(Physical)", "")+", "
 				pass
 			button_default.text = input_list.trim_suffix(", ").strip_edges()
 		pass
 	
-	if not Action_Name.is_empty():
-		rebinder_label.text = Action_Name
-		
+	if GameSettings.Custom_Key_Bindings.has(Action_to_Rebind):
+		button_custom.text = GameSettings.Custom_Key_Bindings[Action_to_Rebind].replace("(Physical)", "")
 	
+	pass
 	
+func _input(event: InputEvent) -> void:
+	if read_time == 0 or event is InputEventMouse:
+		return
+	if event.as_text() == "Delete":
+		GameSettings.Custom_Key_Bindings.erase(Action_to_Rebind)
+	else:
+		GameSettings.Custom_Key_Bindings[Action_to_Rebind] = event.as_text()
+	GameSettings._save()
+	Beeper.play_hit()
+	read_time = 0
+	read_progress.visible = false
+	button_custom.disabled = false
+	update_custom()
+	pass
+
+func update_custom() -> void:
+	if not GameSettings.Custom_Key_Bindings.has(Action_to_Rebind):
+		button_custom.text = " "
+	else:
+		button_custom.text = GameSettings.Custom_Key_Bindings[Action_to_Rebind].replace("(Physical)", "")
 	pass
 	
 func update_progress() -> void:
@@ -71,4 +94,5 @@ func _on_button_custom_pressed() -> void:
 	read_progress.value = read_time
 	button_custom.disabled = true
 	read_progress.visible = true
+	Beeper.play_ui()
 	pass

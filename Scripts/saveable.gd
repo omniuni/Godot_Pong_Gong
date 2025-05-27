@@ -28,7 +28,6 @@ func _get_save_file_path() -> String:
 	
 func _save() -> void:
 	if not _Enable_Saving: return
-	var saveable_properties: Array = Array()
 	for property in get_property_list():
 		var propertyName: String = property["name"]
 		if propertyName.begins_with("_"): continue
