@@ -25,16 +25,29 @@ Title = "Settings"
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 100.0
-offset_bottom = 148.0
+offset_top = 50.0
+offset_bottom = 400.0
 grow_horizontal = 2
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 30
+theme_override_constants/v_separation = 23
 columns = 2
+
+[node name="DisplayLabel" type="Label" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Display"
+
+[node name="DisplayOptions" type="OptionButton" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Window"
+popup/item_0/id = 0
+popup/item_1/text = "Full Screen"
+popup/item_1/id = 1
 
 [node name="AudioLabel" type="Label" parent="CenterContainer/GridContainer"]
 layout_mode = 2
@@ -104,6 +117,7 @@ text = "Key Bindings"
 layout_mode = 2
 text = "Configure"
 
+[connection signal="item_selected" from="CenterContainer/GridContainer/DisplayOptions" to="." method="_on_display_options_item_selected"]
 [connection signal="toggled" from="CenterContainer/GridContainer/AudioCheck" to="." method="_on_audio_check_toggled"]
 [connection signal="item_selected" from="CenterContainer/GridContainer/OptionGameRounds" to="." method="_on_option_game_rounds_item_selected"]
 [connection signal="On_Color_Selected" from="CenterContainer/GridContainer/ItemColorListP1" to="." method="_on_item_color_list_p_1_on_color_selected"]

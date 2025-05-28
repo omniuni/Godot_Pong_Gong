@@ -1,5 +1,11 @@
 extends SaveableNode
 
+var Display_Fullscreen: bool = false:
+	set(value):
+		Display_Fullscreen = value
+		_save()
+		pass
+
 var Audio_Enabled: bool = true:
 	set(value):
 		Audio_Enabled = value
@@ -48,3 +54,11 @@ func get_action_name(event: InputEvent) -> String:
 	if event_string == null:
 		event_string = ""
 	return event_string
+
+func apply_display() -> void:
+	var current_mode = DisplayServer.window_get_mode()
+	if Display_Fullscreen and current_mode != DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	if not Display_Fullscreen and current_mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	pass

@@ -1,6 +1,7 @@
 extends Control
 
 func _ready() -> void:
+	GameSettings.apply_display()
 	# No way to "Exit" on the web.
 	var button_exit: Button = $MarginContainer/VBoxContainer/VBoxOptions/ButtonExit
 	button_exit.visible = OS.get_name() != "Web"
