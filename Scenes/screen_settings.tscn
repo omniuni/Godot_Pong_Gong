@@ -55,7 +55,8 @@ text = "Audio"
 
 [node name="AudioCheck" type="CheckButton" parent="CenterContainer/GridContainer"]
 layout_mode = 2
-text = "Enabled"
+text = "Enabled?"
+flat = true
 
 [node name="GameLengthLabel" type="Label" parent="CenterContainer/GridContainer"]
 layout_mode = 2
