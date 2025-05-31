@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvae13382ehhd"]
+
+[ext_resource type="Script" uid="uid://bnwilqj2clax" path="res://Scripts/ui_target.gd" id="1_wji75"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jnj54"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wji75"]
+size = Vector2(40, 40)
+
+[node name="UiTarget" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jnj54")
+script = ExtResource("1_wji75")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_wji75")
+disabled = true
+
+[node name="Touchpoint" type="Polygon2D" parent="Area2D"]
+visible = false
+color = Color(1, 1, 1, 0.313726)
+polygon = PackedVector2Array(0, 10, 10, 0, 30, 0, 40, 10, 40, 30, 30, 40, 10, 40, 0, 30)
+
+[node name="Dragpoint" type="Polygon2D" parent="Area2D"]
+visible = false
+color = Color(1, 1, 1, 0.313726)
+polygon = PackedVector2Array(20, 10, 10, 20, 20, 30, 30, 20)
