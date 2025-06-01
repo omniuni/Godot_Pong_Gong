@@ -222,29 +222,26 @@ autostart = true
 
 [node name="ContainLeftTarget" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 10.0
 offset_top = 50.0
-offset_right = 30.0
+offset_right = 40.0
 offset_bottom = 400.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_i8enm")
 
 [node name="UiTargetLeftPanel" parent="ContainLeftTarget" instance=ExtResource("5_i8enm")]
 layout_mode = 2
 Emulate_Touch_With_Mouse = true
-Print_Debug_Messages = true
 
 [node name="ContainRightTarget" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_left = 610.0
+offset_left = 600.0
 offset_top = 50.0
-offset_right = 630.0
+offset_right = 640.0
 offset_bottom = 400.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_i8enm")
 
 [node name="UiTargetRightPanel" parent="ContainRightTarget" instance=ExtResource("5_i8enm")]
 layout_mode = 2
 Emulate_Touch_With_Mouse = true
-Print_Debug_Messages = true
 
 [connection signal="body_entered" from="RigidBodyCeiling" to="." method="_on_rigid_body_ceiling_body_entered"]
 [connection signal="body_entered" from="RigidBodyFloor" to="." method="_on_rigid_body_floor_body_entered"]
@@ -255,3 +252,9 @@ Print_Debug_Messages = true
 [connection signal="body_entered" from="RigidBodyGoalRight" to="." method="_on_rigid_body_goal_right_body_entered"]
 [connection signal="pressed" from="WinPanel/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonDone" to="." method="_on_button_done_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="on_target_drag" from="ContainLeftTarget/UiTargetLeftPanel" to="." method="_on_ui_target_left_panel_on_target_drag"]
+[connection signal="on_target_end" from="ContainLeftTarget/UiTargetLeftPanel" to="." method="_on_ui_target_left_panel_on_target_end"]
+[connection signal="on_target_touch" from="ContainLeftTarget/UiTargetLeftPanel" to="." method="_on_ui_target_left_panel_on_target_touch"]
+[connection signal="on_target_drag" from="ContainRightTarget/UiTargetRightPanel" to="." method="_on_ui_target_right_panel_on_target_drag"]
+[connection signal="on_target_end" from="ContainRightTarget/UiTargetRightPanel" to="." method="_on_ui_target_right_panel_on_target_end"]
+[connection signal="on_target_touch" from="ContainRightTarget/UiTargetRightPanel" to="." method="_on_ui_target_right_panel_on_target_touch"]
