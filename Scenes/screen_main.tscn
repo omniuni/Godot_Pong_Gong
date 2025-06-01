@@ -234,6 +234,7 @@ Emulate_Touch_With_Mouse = true
 Print_Debug_Messages = true
 
 [node name="ContainRightTarget" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_left = 610.0
 offset_top = 50.0
 offset_right = 630.0
