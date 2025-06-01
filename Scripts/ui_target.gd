@@ -3,6 +3,10 @@ extends PanelContainer
 @export var Emulate_Touch_With_Mouse: bool = false
 @export var Print_Debug_Messages: bool = false
 
+signal on_target_touch(target: Vector2)
+signal on_target_drag(target: Vector2)
+signal on_target_end()
+
 @onready var touch_point: Polygon2D = $Area2D/Touchpoint
 @onready var drag_point: Polygon2D = $Area2D/Dragpoint
 @onready var area: Area2D = $Area2D
@@ -31,8 +35,8 @@ func _input(event: InputEvent) -> void:
 	if not parent_rect.has_point(event.position):
 		if is_interacting or is_dragging:
 			if Print_Debug_Messages: print("Tracking target lost in "+parent.name)
-			last_touch = Vector2(-1,-1)
 			end_interaction()
+			last_touch = Vector2(-1,-1)
 		if is_interacting: is_interacting = false
 		if is_dragging: is_dragging = false
 		return
@@ -63,6 +67,8 @@ func handle_interaction() -> void:
 	if Print_Debug_Messages:
 		if is_dragging: print("Drag event at "+str(last_touch))
 		else: print("Touch event at "+str(last_touch))
+	if is_dragging: on_target_drag.emit(last_touch)
+	else: on_target_touch.emit(last_touch)
 	update_visual_position()
 	touch_point.visible = true
 	if is_dragging: drag_point.visible = true
@@ -73,6 +79,7 @@ func end_interaction() -> void:
 	touch_point.visible = false
 	drag_point.visible = false
 	last_touch = Vector2(-1,-1)
+	on_target_end.emit()
 	update_visual_position()
 	pass
 
