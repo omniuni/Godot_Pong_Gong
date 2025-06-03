@@ -145,3 +145,29 @@ func _on_button_done_pressed() -> void:
 	Beeper.play_ui()
 	Scenes.change_to(get_tree(), Scenes.menu)
 	pass
+
+func _on_ui_target_left_panel_on_target_end() -> void:
+	panel_left_p1.request_move_stop()
+	pass
+
+func _on_ui_target_left_panel_on_target_touch(target: Vector2) -> void:
+	panel_left_p1.request_move_to(target)
+	pass
+
+func _on_ui_target_left_panel_on_target_drag(target: Vector2) -> void:
+	panel_left_p1.request_move_to(target)
+	pass
+
+
+
+func _on_ui_target_right_panel_on_target_end() -> void:
+	panel_right_p2.request_move_stop()
+	pass
+	
+func _on_ui_target_right_panel_on_target_touch(target: Vector2) -> void:
+	panel_right_p2.request_move_to(target)
+	pass
+
+func _on_ui_target_right_panel_on_target_drag(target: Vector2) -> void:
+	panel_right_p2.request_move_to(target)
+	pass
