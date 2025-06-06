@@ -46,9 +46,7 @@ func _physics_process(_delta: float) -> void:
 func request_move_to(target_global_position: Vector2) -> void:
 	if move_to_target == null or move_to_target != target_global_position:
 		move_to_target = target_global_position
-	print("move requested to "+str(target_global_position))
 	var panel_center = panel_collision_area.global_position
-	print("panel center at: "+str(panel_center))
 	# Reduce jitter if it's close enough
 	if abs(target_global_position.y-panel_center.y) < 3:
 		request_move_stop()
