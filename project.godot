@@ -13,15 +13,16 @@ config_version=5
 config/name="Gong"
 config/version="0.5"
 run/main_scene="uid://b3ox6mxkai1n1"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/use_filter=false
 config/icon="uid://63fgwhx35ciu"
 
 [autoload]
 
 Scenes="*res://Scripts/scenes.gd"
-Beeper="*res://Scenes/virtual_beeper.tscn"
 GameSettings="*res://Scripts/game_settings.gd"
+AudioBeeper="*res://Sfx/audio_beeper.tscn"
+Beeper="*res://Sfx/beeper.gd"
 
 [display]
 
