@@ -20,11 +20,14 @@ func _generate(player: AudioStreamPlayer, beep: AudioBeep):
 	var playback: AudioStreamGeneratorPlayback = player.get_stream_playback()
 	var frames_available: int = playback.get_frames_available()
 	for i in range(frames_available):
-		var frame_value: Vector2 = Vector2.ONE * sin(beep.phase * TAU)
-		playback.push_frame(frame_value)
-		beep.phase = fmod(beep.phase + beep.increment, 1.0)
-	if beep.frames_left(frames_available) <= 0:
+		if beep.frames_left > 0:
+			var frame_value: Vector2 = Vector2.ONE * sin(beep.phase * TAU)
+			playback.push_frame(frame_value)
+			beep.phase = fmod(beep.phase + beep.increment, 1.0)
+			beep.frames_left-=1
+	if beep.frames_left <= 0:
 		player.stop()
+		beep.frames_left = 0
 	pass
 	
 func beep_background(tone_hz: float, time_in_seconds: float):

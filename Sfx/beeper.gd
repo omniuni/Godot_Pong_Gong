@@ -13,19 +13,19 @@ func _beep(tone, time):
 	pass
 
 func play_ui():
-	_beep(520, 0.2)
+	_beep(520, 0.07)
 	pass
 
 func play_ball():
-	_beep(600, 0.2)
+	_beep(600, 0.1)
 	pass
 	
 func play_hit():
-	_beep(900, 0.2)
+	_beep(900, 0.1)
 	pass
 	
 func play_wall():
-	_beep(800, 0.2)
+	_beep(800, 0.1)
 	pass
 	
 func play_panel():

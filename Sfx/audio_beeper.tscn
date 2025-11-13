@@ -4,11 +4,11 @@
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_ho5so"]
 mix_rate = 11025.0
-buffer_length = 0.1
+buffer_length = 0.05
 
 [sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_6gebf"]
 mix_rate = 11025.0
-buffer_length = 0.1
+buffer_length = 0.05
 
 [node name="AudioBeeper" type="Node"]
 script = ExtResource("1_woll1")
