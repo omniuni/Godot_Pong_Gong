@@ -15,6 +15,8 @@ script = ExtResource("1_woll1")
 
 [node name="beeper_bg" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamGenerator_ho5so")
+autoplay = true
 
 [node name="beeper_fg" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamGenerator_6gebf")
+autoplay = true

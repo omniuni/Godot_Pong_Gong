@@ -13,7 +13,7 @@ func _beep(tone, time):
 	pass
 
 func play_ui():
-	_beep(520, 0.07)
+	_beep(520, 0.05)
 	pass
 
 func play_ball():

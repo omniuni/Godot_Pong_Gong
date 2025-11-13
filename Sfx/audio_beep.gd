@@ -11,6 +11,10 @@ var increment: float = 0:
 		return _tone_hz / _sample_rate
 
 func _init(tone_hz: float, time_in_seconds: float, sample_rate: int = 11025) -> void:
+	update(tone_hz, time_in_seconds, sample_rate)
+	pass
+	
+func update(tone_hz: float, time_in_seconds: float, sample_rate: int = 11025) -> void:
 	_tone_hz = tone_hz
 	_sample_rate = sample_rate
 	frames_left = int(time_in_seconds * sample_rate)
