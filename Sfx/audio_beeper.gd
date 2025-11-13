@@ -27,6 +27,8 @@ func _generate(player: AudioStreamPlayer, beep: AudioBeep):
 			playback.push_frame(frame_value)
 			beep.phase = fmod(beep.phase + beep.increment, 1.0)
 			beep.frames_left-=1
+		else:
+			break
 	pass
 	
 func beep_background(tone_hz: float, time_in_seconds: float):
