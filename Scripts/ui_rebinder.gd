@@ -59,7 +59,7 @@ func _input(event: InputEvent) -> void:
 	else:
 		GameSettings.Custom_Key_Bindings[Action_to_Rebind] = event.keycode
 	GameSettings._save()
-	Beeper.play_hit()
+	PongBeeper.play_hit()
 	read_time = 0
 	read_progress.visible = false
 	button_custom.disabled = false
@@ -98,5 +98,5 @@ func _on_button_custom_pressed() -> void:
 	read_progress.value = read_time
 	button_custom.disabled = true
 	read_progress.visible = true
-	Beeper.play_ui()
+	PongBeeper.play_ui()
 	pass

@@ -73,7 +73,7 @@ func add_ball():
 		current_ball.position = spawn.position-current_ball.center_offset()
 		current_ball.Ball_Speed = Ball_Speed
 		current_ball.set_ball_speedup(Ball_Speedup)
-		Beeper.play_ball()
+		PongBeeper.play_ball()
 		add_child(current_ball)
 	pass
 	
@@ -98,7 +98,7 @@ func _on_item_panel_right_kick(direction: Vector2) -> void:
 
 func _on_rigid_body_goal_left_body_entered(body: Node) -> void:
 	if body.get_parent().name.contains("Ball"):
-		Beeper.play_out()
+		PongBeeper.play_out()
 		current_ball.queue_free()
 		score_right = score_right+1
 		update_scores()
@@ -106,7 +106,7 @@ func _on_rigid_body_goal_left_body_entered(body: Node) -> void:
 
 func _on_rigid_body_goal_right_body_entered(body: Node) -> void:
 	if body.get_parent().name.contains("Ball"):
-		Beeper.play_out()
+		PongBeeper.play_out()
 		current_ball.queue_free()
 		score_left = score_left+1
 		update_scores()
@@ -114,16 +114,16 @@ func _on_rigid_body_goal_right_body_entered(body: Node) -> void:
 
 func _on_rigid_body_ceiling_body_entered(body: Node) -> void:
 	if body.get_parent().name.contains("Ball"):
-		Beeper.play_wall()
+		PongBeeper.play_wall()
 	elif body.get_parent().name.contains("Panel"):
-		Beeper.play_panel()
+		PongBeeper.play_panel()
 	pass
 
 func _on_rigid_body_floor_body_entered(body: Node) -> void:
 	if body.get_parent().name.contains("Ball"):
-		Beeper.play_wall()
+		PongBeeper.play_wall()
 	elif body.get_parent().name.contains("Panel"):
-		Beeper.play_panel()
+		PongBeeper.play_panel()
 	pass
 
 func _on_timer_timeout() -> void:
@@ -142,7 +142,7 @@ func _on_bar_top_on_secondary_action() -> void:
 	pass
 
 func _on_button_done_pressed() -> void:
-	Beeper.play_ui()
+	PongBeeper.play_ui()
 	Scenes.change_to(get_tree(), Scenes.menu)
 	pass
 
@@ -157,8 +157,6 @@ func _on_ui_target_left_panel_on_target_touch(target: Vector2) -> void:
 func _on_ui_target_left_panel_on_target_drag(target: Vector2) -> void:
 	panel_left_p1.request_move_to(target)
 	pass
-
-
 
 func _on_ui_target_right_panel_on_target_end() -> void:
 	panel_right_p2.request_move_stop()

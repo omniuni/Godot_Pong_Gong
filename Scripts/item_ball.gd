@@ -24,7 +24,7 @@ func set_ball_speedup(speedup: int):
 func kick_off(direction: Vector2) -> void:
 	var current_speed = body_ball.get_speed()
 	if current_speed == 0:
-		Beeper.play_hit()
+		PongBeeper.play_hit()
 		body_ball.linear_velocity = direction
 	pass
 

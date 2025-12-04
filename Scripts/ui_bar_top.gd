@@ -51,16 +51,16 @@ func _ready() -> void:
 	pass
 
 func _on_button_done_pressed() -> void:
-	Beeper.play_ui()
+	PongBeeper.play_ui()
 	Scenes.change_to(get_tree(), Scenes.menu)
 	pass
 
 func _on_button_secondary_pressed() -> void:
-	Beeper.play_ui()
+	PongBeeper.play_ui()
 	On_Secondary_Action.emit()
 	pass
 
 func _on_button_tertiary_pressed() -> void:
-	Beeper.play_ui()
+	PongBeeper.play_ui()
 	On_Tertiary_Action.emit()
 	pass

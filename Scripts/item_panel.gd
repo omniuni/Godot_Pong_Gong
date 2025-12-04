@@ -100,5 +100,5 @@ func compute_velocity() -> void:
 
 func _on_rigid_body_panel_body_entered(body: Node) -> void:
 	if body.get_parent().name.contains("Ball"):
-		Beeper.play_hit()
+		PongBeeper.play_hit()
 	pass
