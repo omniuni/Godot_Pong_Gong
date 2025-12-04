@@ -52,7 +52,7 @@ func _generate(player: AudioStreamPlayer, beeps: Array[AudioBeep]):
 			playback.push_frame(frame_value)
 		else:
 			playback.push_frame(Vector2.ZERO)
-			break
+			
 	pass
 	
 func beep_background(tone_hz: float, time_in_seconds: float):
