@@ -9,7 +9,7 @@ var _beep_fg: AudioBeep = AudioBeep.new(440, 0)
 func _ready() -> void:
 	print_debug("Setting up audio generator...")
 	_beeper_generator.mix_rate = 7350
-	_beeper_generator.buffer_length = 0.05
+	_beeper_generator.buffer_length = 0.032
 	_beeper_player.stream = _beeper_generator
 	_beeper_player.autoplay = true
 	add_child(_beeper_player, false, Node.INTERNAL_MODE_BACK)
@@ -39,6 +39,9 @@ func _generate(player: AudioStreamPlayer, beeps: Array[AudioBeep]):
 	
 	for i in range(frames_available):
 		if highest_frames_left > 0:
+			for beep in beeps:
+				beep.phase = fmod(beep.phase + beep.increment, 1.0)
+				beep.frames_left-=1
 			var frame_compute_sum: Vector2 = Vector2(0,0)
 			var frame_sum_count: int = 0
 			for beep in beeps:
@@ -47,10 +50,8 @@ func _generate(player: AudioStreamPlayer, beeps: Array[AudioBeep]):
 					frame_sum_count += 1
 			var frame_value: Vector2 = frame_compute_sum/frame_sum_count
 			playback.push_frame(frame_value)
-			for beep in beeps:
-				beep.phase = fmod(beep.phase + beep.increment, 1.0)
-				beep.frames_left-=1
 		else:
+			playback.push_frame(Vector2.ZERO)
 			break
 	pass
 	
