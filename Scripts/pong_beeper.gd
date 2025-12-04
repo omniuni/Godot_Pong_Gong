@@ -9,7 +9,7 @@ extends Node
 func _beep(tone, time):
 	if not GameSettings.Audio_Enabled:
 		return
-	AudioBeeper.beep_background(tone, time)
+	AudioBeeper.beep_foreground(tone, time)
 	pass
 
 func play_ui():
@@ -29,7 +29,9 @@ func play_wall():
 	pass
 	
 func play_panel():
-	_beep(400, 0.2)
+	if not GameSettings.Audio_Enabled:
+		return
+	AudioBeeper.beep_background(400, 0.25)
 	pass
 	
 func play_out():
