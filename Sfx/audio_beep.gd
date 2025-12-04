@@ -17,5 +17,5 @@ func _init(tone_hz: float, time_in_seconds: float, sample_rate: int = 11025) -> 
 func update(tone_hz: float, time_in_seconds: float, sample_rate: int = 11025) -> void:
 	_tone_hz = tone_hz
 	_sample_rate = sample_rate
-	frames_left = int(time_in_seconds * sample_rate)
+	frames_left = int(time_in_seconds * sample_rate/2)
 	pass
