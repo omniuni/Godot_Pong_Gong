@@ -12,19 +12,20 @@ func _ready() -> void:
 	_beeper_generator.buffer_length = 0.05
 	_beeper_player.stream = _beeper_generator
 	_beeper_player.autoplay = true
-	add_child(_beeper_player)
+	add_child(_beeper_player, false, Node.INTERNAL_MODE_BACK)
 	print_debug("Audio Generator has been initialized.")
 	pass
 
 func _process(delta: float) -> void:
 	
-	var beeps_array: Array[AudioBeep] = [_beep_bg, _beep_fg]
-	var should_play: bool = false
-	for beep in beeps_array:
-		if beep.frames_left > 0:
-			should_play = true
-	if should_play:
-		_generate(_beeper_player, [_beep_fg, _beep_bg])
+	if _beeper_player.playing:
+		var beeps_array: Array[AudioBeep] = [_beep_bg, _beep_fg]
+		var should_play: bool = false
+		for beep in beeps_array:
+			if beep.frames_left > 0:
+				should_play = true
+		if should_play:
+			_generate(_beeper_player, [_beep_fg, _beep_bg])
 	
 	pass
 	

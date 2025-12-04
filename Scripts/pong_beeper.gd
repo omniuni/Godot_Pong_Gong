@@ -31,7 +31,7 @@ func play_wall():
 func play_panel():
 	if not GameSettings.Audio_Enabled:
 		return
-	AudioBeeper.beep_foreground(400, 20.0)
+	AudioBeeper.beep_background(400, 20.0)
 	pass
 	
 func play_out():
