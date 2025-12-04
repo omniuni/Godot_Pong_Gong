@@ -22,7 +22,7 @@ config/icon="uid://63fgwhx35ciu"
 Scenes="*res://Scripts/scenes.gd"
 GameSettings="*res://Scripts/game_settings.gd"
 AudioBeeper="*res://Sfx/audio_beeper.tscn"
-Beeper="*res://Sfx/beeper.gd"
+PongBeeper="*res://Scripts/pong_beeper.gd"
 
 [display]
 
